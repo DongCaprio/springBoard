@@ -25,19 +25,17 @@ public class BlogApiController {
 
     public final BlogService blogService;
 
-    @PostMapping("/api/articles")
-    public ResponseEntity<Article> addArticle(@RequestBody ArticleDto request) {
     @PostMapping("")
+    public ResponseEntity<ArticleResponse> addArticle(@RequestBody ArticleCreateRequest request) {
         Article savedArticle = blogService.save(request);
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(savedArticle);
+                .body(new ArticleResponse(savedArticle));
     }
 
-    @GetMapping("/api/articles")
-    public ResponseEntity<List<ArticleDto>> findAllArticles() {
-        List<ArticleDto> articles = blogService.findAll()
     @GetMapping("")
+    public ResponseEntity<List<ArticleResponse>> findAllArticles() {
+        List<ArticleResponse> articles = blogService.findAll()
                 .stream()
                 .map(ArticleResponse::new)
                 .toList();
@@ -46,30 +44,28 @@ public class BlogApiController {
                 .body(articles);
     }
 
-    @GetMapping("/api/articles/{id}")
-    public ResponseEntity<ArticleDto> findArticle(@PathVariable long id) {
     @GetMapping("/{id}")
+    public ResponseEntity<ArticleResponse> findArticle(@PathVariable long id) {
         Article article = blogService.findById(id);
 
         return ResponseEntity.ok()
-                .body(new ArticleDto(article));
+                .body(new ArticleResponse(article));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteArticle(@PathVariable long id) {
         blogService.delete(id);
 
-        return ResponseEntity.ok()
+        return ResponseEntity.noContent()
                 .build();
     }
 
-    @PutMapping("api/articles/{id}")
-    public ResponseEntity<Article> updateArticle(@PathVariable long id,
-                                                 @RequestBody ArticleDto request) {
     @PutMapping("/{id}")
+    public ResponseEntity<ArticleResponse> updateArticle(@PathVariable long id,
+                                                         @RequestBody ArticleUpdateRequest request) {
         Article updateArticle = blogService.update(id, request);
 
         return ResponseEntity.ok()
-                .body(updateArticle);
+                .body(new ArticleResponse(updateArticle));
     }
 }

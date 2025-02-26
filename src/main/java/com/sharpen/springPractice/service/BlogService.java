@@ -1,7 +1,8 @@
 package com.sharpen.springPractice.service;
 
 import com.sharpen.springPractice.domain.Article;
-import com.sharpen.springPractice.dto.ArticleDto;
+import com.sharpen.springPractice.dto.ArticleCreateRequest;
+import com.sharpen.springPractice.dto.ArticleUpdateRequest;
 import com.sharpen.springPractice.repository.BlogRepository;
 import jakarta.transaction.Transactional;
 import java.util.List;
@@ -14,7 +15,7 @@ public class BlogService {
 
     private final BlogRepository blogRepository;
 
-    public Article save(ArticleDto request) {
+    public Article save(ArticleCreateRequest request) {
         return blogRepository.save(request.toEntity());
     }
 
@@ -32,7 +33,7 @@ public class BlogService {
     }
 
     @Transactional
-    public Article update(long id, ArticleDto request) {
+    public Article update(long id, ArticleUpdateRequest request) {
         Article article = blogRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not fount : " + id));
 
