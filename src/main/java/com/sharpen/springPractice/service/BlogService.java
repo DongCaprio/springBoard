@@ -24,8 +24,7 @@ public class BlogService {
     }
 
     public Article findById(long id) {
-        return blogRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not found : " + id));
+        return findArticle(id);
     }
 
     public void delete(long id) {
@@ -34,10 +33,14 @@ public class BlogService {
 
     @Transactional
     public Article update(long id, ArticleUpdateRequest request) {
-        Article article = blogRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("not fount : " + id));
+        Article article = findArticle(id);
 
         article.update(request.getTitle(), request.getContent());
         return article;
+    }
+
+    private Article findArticle(long id) {
+        return blogRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not fount : " + id));
     }
 }
