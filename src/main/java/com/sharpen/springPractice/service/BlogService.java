@@ -4,13 +4,14 @@ import com.sharpen.springPractice.domain.Article;
 import com.sharpen.springPractice.dto.ArticleCreateRequest;
 import com.sharpen.springPractice.dto.ArticleUpdateRequest;
 import com.sharpen.springPractice.repository.BlogRepository;
-import jakarta.transaction.Transactional;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class BlogService {
 
     private final BlogRepository blogRepository;
@@ -19,10 +20,12 @@ public class BlogService {
         return blogRepository.save(request.toEntity());
     }
 
+    @Transactional(readOnly = true)
     public List<Article> findAll() {
         return blogRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Article findById(long id) {
         return findArticle(id);
     }
@@ -30,8 +33,7 @@ public class BlogService {
     public void delete(long id) {
         blogRepository.deleteById(id);
     }
-
-    @Transactional
+    
     public Article update(long id, ArticleUpdateRequest request) {
         Article article = findArticle(id);
 
