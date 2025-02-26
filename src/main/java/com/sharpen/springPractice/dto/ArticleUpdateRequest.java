@@ -1,12 +1,12 @@
 package com.sharpen.springPractice.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @Getter
+@AllArgsConstructor
 public class ArticleUpdateRequest {
 
-    private String title;
-    private String content;
+    private final String title;
+    private final String content;
 }

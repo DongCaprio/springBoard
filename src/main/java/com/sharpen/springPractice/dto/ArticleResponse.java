@@ -1,15 +1,15 @@
 package com.sharpen.springPractice.dto;
 
 import com.sharpen.springPractice.domain.Article;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class ArticleResponse {
 
-    private String title;
-    private String content;
+    private final String title;
+    private final String content;
 
     public ArticleResponse(Article article) {
         this.title = article.getTitle();

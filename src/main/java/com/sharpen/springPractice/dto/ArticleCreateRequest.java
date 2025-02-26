@@ -1,15 +1,15 @@
 package com.sharpen.springPractice.dto;
 
 import com.sharpen.springPractice.domain.Article;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
 public class ArticleCreateRequest {
-    
-    private String title;
-    private String content;
+
+    private final String title;
+    private final String content;
 
     public Article toEntity() {
         return Article.builder()

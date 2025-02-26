@@ -9,7 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sharpen.springPractice.domain.Article;
-import com.sharpen.springPractice.dto.ArticleDto;
+import com.sharpen.springPractice.dto.ArticleCreateRequest;
+import com.sharpen.springPractice.dto.ArticleUpdateRequest;
 import com.sharpen.springPractice.repository.BlogRepository;
 import java.util.List;
 import org.assertj.core.api.Assertions;
@@ -55,7 +56,7 @@ class BlogApiControllerTest {
         final String url = "/api/articles";
         final String title = "title123";
         final String content = "content123";
-        final ArticleDto userRequest = new ArticleDto(title, content);
+        final ArticleCreateRequest userRequest = new ArticleCreateRequest(title, content);
         final String requestBody = objectMapper.writeValueAsString(userRequest);
 
         // when
@@ -159,7 +160,7 @@ class BlogApiControllerTest {
         String changedTitle = "aaaaTitle";
         String changedContent = "aaaaContent";
 
-        ArticleDto requestDto = new ArticleDto(changedTitle, changedContent);
+        ArticleUpdateRequest requestDto = new ArticleUpdateRequest(changedTitle, changedContent);
 
         // when
         ResultActions result = mockMvc.perform(put(url, savedArticle.getId())
