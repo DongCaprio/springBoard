@@ -1,0 +1,4 @@
+# 전역적인 context-path 설정
+server:
+  servlet:
+    context-path: /api
