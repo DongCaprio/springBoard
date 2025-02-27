@@ -1,10 +1,10 @@
 package com.sharpen.springPractice.dto;
 
 import com.sharpen.springPractice.domain.Article;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Getter
 public class ArticleResponse {
 

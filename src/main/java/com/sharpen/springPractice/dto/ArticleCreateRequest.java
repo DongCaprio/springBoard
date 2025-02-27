@@ -1,11 +1,11 @@
 package com.sharpen.springPractice.dto;
 
 import com.sharpen.springPractice.domain.Article;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ArticleCreateRequest {
 
     private final String title;
