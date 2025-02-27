@@ -4,8 +4,9 @@ import com.sharpen.springPractice.domain.Article;
 import com.sharpen.springPractice.dto.ArticleCreateRequest;
 import com.sharpen.springPractice.dto.ArticleUpdateRequest;
 import com.sharpen.springPractice.repository.BlogRepository;
-import java.util.List;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +22,8 @@ public class BlogService {
     }
 
     @Transactional(readOnly = true)
-    public List<Article> findAll() {
-        return blogRepository.findAll();
+    public Page<Article> findAll(Pageable pageable) {
+        return blogRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)
@@ -33,7 +34,7 @@ public class BlogService {
     public void delete(long id) {
         blogRepository.deleteById(id);
     }
-    
+
     public Article update(long id, ArticleUpdateRequest request) {
         Article article = findArticle(id);
 
