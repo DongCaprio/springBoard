@@ -26,8 +26,8 @@ class ErrorResponse {
                 .statusCode(errorCode.getHttpStatus().value())
                 .timestamp(LocalDateTime.now())
                 .code(errorCode.getCode())
-                .message(errorCode.getMessage())
-                .myMessage(defaultMessage)
+                .message(defaultMessage)
+                .myMessage(errorCode.getMessage())
                 .build();
     }
 }
