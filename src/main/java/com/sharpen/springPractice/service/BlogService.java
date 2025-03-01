@@ -3,8 +3,8 @@ package com.sharpen.springPractice.service;
 import com.sharpen.springPractice.domain.Article;
 import com.sharpen.springPractice.dto.ArticleCreateRequest;
 import com.sharpen.springPractice.dto.ArticleUpdateRequest;
+import com.sharpen.springPractice.exception.MyEntityNotFoundException;
 import com.sharpen.springPractice.repository.BlogRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,6 +45,6 @@ public class BlogService {
 
     private Article findArticle(long id) {
         return blogRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("not fount : " + id));
+                .orElseThrow(MyEntityNotFoundException::getInstance);
     }
 }
