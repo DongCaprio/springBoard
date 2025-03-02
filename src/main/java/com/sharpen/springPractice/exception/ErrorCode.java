@@ -1,6 +1,5 @@
 package com.sharpen.springPractice.exception;
 
-import java.util.Arrays;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
@@ -21,12 +20,4 @@ public enum ErrorCode {
         this.message = message;
         this.httpStatus = httpStatus;
     }
-
-    public static ErrorCode fromHttpStatus(HttpStatus status) {
-        return Arrays.stream(values())
-                .filter(code -> code.getHttpStatus() == status)
-                .findFirst()
-                .orElse(SYSTEM_ERROR);
-    }
-
 }
