@@ -45,6 +45,6 @@ public class BlogService {
 
     private Article findArticle(long id) {
         return blogRepository.findById(id)
-                .orElseThrow(MyEntityNotFoundException::getInstance);
+                .orElseThrow(() -> MyEntityNotFoundException.of(id));
     }
 }

@@ -12,16 +12,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MyEntityNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleEntityNotFound(MyEntityNotFoundException e) {
 
-        log.error("Error Code: {}, Message: {}, DefaultErrorMessage: {}",
+        log.error("Error Code: {}, Message: {}, entityId: {}",
                 e.getErrorCode().getCode(),
                 e.getErrorCode().getMessage(),
-                e.getMessage(),
+                e.getEntityId(),
                 e);
 
-        ErrorResponse errorResponse = ErrorResponse.of(
-                e.getErrorCode(),
-                e.getMessage()
-        );
+        ErrorResponse errorResponse = ErrorResponse.of(e.getErrorCode());
+        errorResponse.addDetail("entityId : ", e.getEntityId());
 
         return new ResponseEntity<>(errorResponse, e.getErrorCode().getHttpStatus());
     }
