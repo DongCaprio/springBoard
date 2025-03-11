@@ -1,11 +1,11 @@
 # 전역적인 context-path 설정
-#server:
-#  servlet:
-#    context-path: /api
+server:
+  servlet:
+    context-path: /api
 
 spring:
   application:
-    name: springPractice
+    name: board
 
   jpa:
     show-sql: true
