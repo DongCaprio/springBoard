@@ -1,0 +1,23 @@
+# 전역적인 context-path 설정
+server:
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: board
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+    defer_datasource-initialization: true #data.sql 실행
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  h2:
+    console:
+      enabled: true
